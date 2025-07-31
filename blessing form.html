@@ -1,0 +1,137 @@
+<!Doctype html>
+    <html lang="en">
+  <head>
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></head>
+    <title>blessing form</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+<section class="bpic">
+		<div class="upload-box">
+  <input type="file" id="photo-input" accept="image/*">
+  <label for="photo-input" id="upload-label">due to technical restraints you can not upload pictures</label>
+  <img id="uploaded-image" src="" alt="Uploaded Image">
+</div>
+
+	</section>
+  <form id="myForm">
+  <section class="b">
+    <h1>pls fill the following field</h1><i>as it will be needed</i>
+  </section>
+  <section class="b8">
+    <label for="name">name</label>
+    <input class="b8b8" name="name" type="text" placeholder="...write your name">
+    <label for="class">class</label>
+    <input class="b8b8" name="class" type="text" placeholder="...your class">
+    <label for="age">age</label>
+    <input class="b8b8" name="age" type="text" placeholder="...your age">
+    <label for="parent phone num">parent phone num</label>
+    <input class="b8b8" name="parent phone num" type="text" placeholder="...parents number">
+    <label for="date of birth">date of birth</label>
+    <input class="b8b8" name="date of birth" type="text" placeholder="...date of birth">
+    <label for="state of orign">state of orign</label>
+    <input class="b8b8" name="state of orign" type="text" placeholder="...state of orign">
+    <label for="religion">religion</label>
+    <input class="b8b8" name="religion" type="text" placeholder="...religion">
+  </section>
+  <button type="submit" class="send-btn">Send</button>
+</form>
+
+<script>
+  const form = document.getElementById('myForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const name = formData.get('name');
+    const classValue = formData.get('class');
+    const age = formData.get('age');
+    const parentPhoneNum = formData.get('parent phone num');
+    const dateOfBirth = formData.get('date of birth');
+    const stateOfOrign = formData.get('state of orign');
+    const religion = formData.get('religion');
+
+    const message = `Name: ${name}%0AClass: ${classValue}%0AAge: ${age}%0AParent Phone Num: ${parentPhoneNum}%0ADate of Birth: ${dateOfBirth}%0AState of Orign: ${stateOfOrign}%0AReligion: ${religion}`;
+    const whatsappLink = `https://wa.me/+2347030897214?text=${message}`;
+    window.open(whatsappLink, '_blank');
+  });
+</script>
+
+</body>
+
+</html>
+<style>
+.send-btn{
+   color: blue;
+   width: 100px;
+   height: 50px;
+   border-radius:15px;
+}
+.upload-box {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.upload-box input[type="file"] {
+  display: none;
+}
+
+.upload-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  color: #666;
+  line-height: 160px;
+}
+
+.upload-box label:hover {
+  border-color: #aaa;
+  background-color: #eee;
+}
+
+#uploaded-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+.b8{
+	margin-top:84px;
+}
+.b{
+	text-align:center;
+}
+.b8b8{
+display:block;
+	margin:8px;
+	width:284px;
+	height:50px;
+	border-radius:10px;
+}
+</style>
+<script>
+const photoInput = document.getElementById('photo-input');
+const uploadLabel = document.getElementById('upload-label');
+const uploadedImage = document.getElementById('uploaded-image');
+
+photoInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  const reader = new FileReader();
+  reader.onload = () => {
+    uploadedImage.src = reader.result;
+    uploadedImage.style.display = 'block';
+    uploadLabel.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+});
+</script>
